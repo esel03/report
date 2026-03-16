@@ -3,7 +3,7 @@ from collections import defaultdict
 from statistics import median
 
 class BaseReportHandler:
-    def process(self, data: List[dict]) -> str:
+    def process(self, data: List[dict]) -> dict:
         pass
 
 

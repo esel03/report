@@ -1,9 +1,10 @@
+from typing import List
 import csv
 from pathlib import Path
 
 
 class ReadCSV:
-    def pars(self, file_paths: list):
+    def pars(self, file_paths: list) -> List[tuple]:
         result_list = []
         for file_path in file_paths:
             path = Path(file_path)

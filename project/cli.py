@@ -1,7 +1,7 @@
 import argparse
 
 
-def read_cli():
+def read_cli() -> dict:
     parser = argparse.ArgumentParser(
                 prog='ProgramName',
                 description='What the program does',
