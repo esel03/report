@@ -1,3 +1,4 @@
+import sys
 from cli import read_cli
 from handler import choice_report_handler
 from pars_csv import ReadCSV
@@ -8,7 +9,10 @@ read_csv = ReadCSV()
 def main():
     param_cli = read_cli()
     report_handler = choice_report_handler(param_repo=param_cli['report'])
-    temp = report_handler.process(data=read_csv.pars(file_paths=param_cli['file']))
+    if (raw_data := read_csv.pars(file_paths=param_cli['file'])) is None:
+        print('File does not exit / it`s dir')
+        sys.exit(1)
+    temp = report_handler.process(data=raw_data)
     print(print_table(temp))
         
 
