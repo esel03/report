@@ -13,7 +13,7 @@ def main():
     if (report_handler := choice_report_handler(param_repo=param_cli['report'])) is None:
         print('Report does not exist')
         sys.exit(1)
-    raw_data = read_csv.pars(file_paths=param_cli['file'])
+    raw_data = read_csv.parse(file_paths=param_cli['file'])
     processed_data = report_handler.process(data=raw_data)
     print(print_table(processed_data))
         
