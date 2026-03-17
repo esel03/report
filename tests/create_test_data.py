@@ -3,11 +3,11 @@ from faker import Faker
 import random
 from datetime import datetime, timedelta
 
-def generate_csv(output_path, num_students=50, days=10):
-    fake = Faker('ru_RU')
-    Faker.seed(42)
-    random.seed(42)
+fake = Faker('ru_RU')
+Faker.seed(42)
+random.seed(42)
 
+def generate_csv(output_path, num_students=50, days=10):
     moods = ['отл', 'норм', 'устал', 'зомби', 'не выжил']
     exam_names = ['Математика']
 
@@ -49,10 +49,6 @@ def generate_csv(output_path, num_students=50, days=10):
 
 
 def generate_data_report(num_students=10, days=2):
-    fake = Faker('ru_RU')
-    Faker.seed(42)
-    random.seed(42)
-
     moods = ['отл', 'норм', 'устал', 'зомби', 'не выжил']
     exam_names = ['Математика']
 
@@ -80,7 +76,24 @@ def generate_data_report(num_students=10, days=2):
                                 'exam': exam_name
                                 })
             data_tuple.append((student, coffee_spent))
-            data_shuffle = data_dict
+            data_shuffle = data_dict.copy()
             random.shuffle(data_shuffle)
 
     return data_dict, data_shuffle, data_tuple
+
+
+def generate_data_median_report():
+    data_test = []
+    data_median = []
+
+    for i in range(0, 10, 2):
+        data_test.append({'student': 'Иванов', 'coffee_spent': f'{i}'})
+    for i in range(0, 10, 3):
+        data_test.append({'student': 'Петров', 'coffee_spent': f'{i}'})
+    
+
+    data_median = [
+        ('Петров', 4.5),
+        ('Иванов', 4),
+    ]
+    return data_test, data_median

@@ -27,6 +27,3 @@ def test_parse_returns_expected_data(read_csv):
     # Проверяем количество
     assert actual_data == expected_data, "Данные не совпадает"
 
-    # Сравниваем каждую запись
-    #for i, (expected, actual) in enumerate(zip(expected_data, actual_data)):
-    #    assert actual == expected, f"Расхождение в строке {i}: {actual} != {expected}"

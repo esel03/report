@@ -2,7 +2,7 @@
 import os
 import tempfile
 import pytest
-from report.tests.create_test_data import generate_data_report
+from report.tests.create_test_data import generate_data_report, generate_data_median_report
 from report.project.gen_report import CoffieMedianReportHandler
 
 NUM_STUDENTS = 10
@@ -21,7 +21,9 @@ def test_parse_returns_expected_data(create_report):
     data_verify_shuffle = create_report.process(data=data_shuffle)
     assert data_tuple == data_verify_notshuffle, "Сортировка (без перемешивания) не успешна"
     assert data_tuple == data_verify_shuffle, "Сортировка (с перемешиванием) не успешна"
-
+    data_test, data_median = generate_data_median_report()
+    result = create_report.process(data=data_test)
+    assert data_median == result, "Вычисление медианы не успешно"
 
 
     # Сравниваем каждую запись
