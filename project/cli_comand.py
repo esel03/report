@@ -2,7 +2,7 @@ import argparse
 from pathlib import Path
 
 
-def read_cli() -> dict | str:
+def read_cli() -> dict:
     parser = argparse.ArgumentParser(
                 prog='ProgramName',
                 description='What the program does',
@@ -14,7 +14,7 @@ def read_cli() -> dict | str:
     for file_path in args.file:
         path = Path(file_path)
         if not (path.exists() and path.is_file()):
-            return file_path
+            raise FileNotFoundError
     return {'file': args.file, 
             'report': args.report}
 

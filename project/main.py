@@ -7,14 +7,17 @@ from output import print_table
 read_csv = ReadCSV()
 
 def main():
-    if isinstance(param_cli := read_cli(), str):
-        print(f'File {param_cli} does not exist / it`s dir')
+    try:
+        param_cli = read_cli()
+    except FileNotFoundError:
+        print('File does not exist')
         sys.exit(1)
-    if (report_handler := choice_report_handler(param_repo=param_cli['report'])) is None:
+    handler_class = choice_report_handler(param_repo=param_cli['report'])
+    if handler_class is None:
         print('Report does not exist')
         sys.exit(1)
     raw_data = read_csv.parse(file_paths=param_cli['file'])
-    processed_data = report_handler.process(data=raw_data)
+    processed_data = handler_class().process(data=raw_data)
     print(print_table(processed_data))
         
 
