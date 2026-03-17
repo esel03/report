@@ -6,9 +6,7 @@ class ReadCSV:
     def parse(self, file_paths: list) -> List[tuple]:
         result_list = []
         for file_path in file_paths:
-            with open(file_path, newline='') as csvfile:
-                result = csv.DictReader(csvfile)
-                for row in result:
-                    result_list.append(row)
+            with open(file_path, newline="") as csvfile:
+                temp = csv.DictReader(csvfile)
+                result_list.extend(temp)
         return result_list
-
